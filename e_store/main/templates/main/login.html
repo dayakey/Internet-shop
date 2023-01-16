@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'assets/css/login.css' %}">
+
+<!DOCTYPE html>
+<html lang="en">
+  <body>
+    <div class="login-box">
+      <br>
+      <br>
+      <h1 class="active"> <a href="{% url 'sign_in' %}">Sign in</a>
+      <a href="{% url 'login' %}">Sign up</a></h1>
+
+    <form method="post">
+
+    {% csrf_token %}
+    <input type="text" class="text" placeholder="Username" name="username">
+
+    <input type="text" class="text" placeholder="Email" name="email">
+
+    <input type="password" class="text" placeholder="Password" name="password1">
+
+    <input type="password" class="text" placeholder="Repeat password" name="password2">
+
+    <button type="submit" class="btn btn-primary">Sign Up</button>
+
+    <hr>
+      <br>
+    <a href="{% url 'main' %}">Go back</a>
+  </form>
+    </div>
+  </body>
+</html>
+
+
