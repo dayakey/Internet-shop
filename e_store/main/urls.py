@@ -7,5 +7,6 @@ urlpatterns = [
     path('sign_in', views.sign_in, name='sign_in'),
     path('logout', views.logout_page, name='logout'),
     path('product/<int:good_id>', views.product_detail, name='product'),
-    path('order.<int:good_id>', views.order, name='order')
+    path('order.<int:good_id>', views.order, name='order'),
+    path('product_list', views.product_list, name='product_list')
 ]

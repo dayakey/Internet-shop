@@ -1,3 +1,4 @@
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -12,7 +13,8 @@ class Goods(models.Model):
     description = models.TextField()
     price = models.PositiveIntegerField()
     category = models.CharField(max_length=30, choices=goods_choices)
-    image = models.ImageField(blank=True, null=True)
+    image = models.ImageField(default='no-image.png', blank=True, null=True)
+    sale = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}"
@@ -21,8 +23,7 @@ class Goods(models.Model):
 class Order(models.Model):
     p_method = [
         ('cash', 'cash'),
-        ('visa', 'visa'),
-        ('paypal', 'paypal'),
+        ('visa', 'visa')
     ]
     name = models.CharField(max_length=10)
     quantity = models.PositiveIntegerField()
@@ -37,3 +38,21 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.name}'
+
+
+class Comment(models.Model):
+    good = models.ForeignKey(Goods, on_delete=models.CASCADE)
+    text = models.TextField(max_length=200)
+    date = models.DateField(default=date.today())
+
+    def __str__(self):
+        return f'{self.text}'
+
+
+class Rating(models.Model):
+    good = models.ForeignKey(Goods, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    rate = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.good, self.rate}"

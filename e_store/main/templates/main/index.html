@@ -15,10 +15,10 @@ E-Store
             </div>
             <form action="" method="get" class="modal-content modal-body border-0 p-0">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="q" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
-                        <i class="fa fa-fw fa-search text-white"></i>
-                    </button>
+                    <form action="" method="get">
+                        {{ filter.form }}
+                        <input type="submit">
+                    </form>
                 </div>
             </form>
         </div>
@@ -42,14 +42,10 @@ E-Store
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Zay</b> eCommerce</h1>
-                                <h3 class="h2">Tiny and Perfect eCommerce Template</h3>
+                                <h1 class="h1 text-success"><b>Zay</b> cosmeticShop</h1>
+                                <h3 class="h2">Lux cosmetics brands</h3>
                                 <p>
-                                    Zay Shop is an eCommerce HTML5 CSS template with latest version of Bootstrap 5 (beta 1).
-                                    This template is 100% free provided by <a rel="sponsored" class="text-success" href="https://templatemo.com" target="_blank">TemplateMo</a> website.
-                                    Image credits go to <a rel="sponsored" class="text-success" href="https://stories.freepik.com/" target="_blank">Freepik Stories</a>,
-                                    <a rel="sponsored" class="text-success" href="https://unsplash.com/" target="_blank">Unsplash</a> and
-                                    <a rel="sponsored" class="text-success" href="https://icons8.com/" target="_blank">Icons 8</a>.
+                                    Широкий каталог товаров, более 70 лучших мировых брендов: уходовая, натуральная косметика
                                 </p>
                             </div>
                         </div>
@@ -111,21 +107,20 @@ E-Store
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">Categories of The Month</h1>
                 <p>
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
                 </p>
             </div>
         </div>
         <div class="row">
             {% for good in goods %}
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="#"><img src="{{ good.image }}" class="rounded-circle img-fluid border"></a>
+                <a href="#"><img src="{{ good.image.url }}" class="rounded-circle img-fluid border" width="200" height="200"></a>
                 <h5 class="text-center mt-3 mb-3">{{ good.name }}</h5>
                 <h6 class="text-center" >{{ good.price }} som</h6>
                 <p class="text-center"><a class="btn btn-success" href="{% url 'product' good.id %}"> Заказать</a></p>
             </div>
             {% endfor %}
         </div>
+        <p class="text-center"><a class="btn btn-success" href="{% url 'product_list' %}"> See all products</a></p>
     </section>
     <!-- End Categories of The Month -->
 

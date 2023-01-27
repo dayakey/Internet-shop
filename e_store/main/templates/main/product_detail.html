@@ -49,13 +49,39 @@
               <div class="product_meta">
                   <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">{{good.category}}</a></span>
               </div>
-              <div class="m-bot15"> <strong>Price : </strong>  <span class="pro-price">{{ good.price }} som</span></div>
+              <div class="m-bot15"> <strong>Price : </strong>  <span class="pro-price">{{ good.price }} som</span>
+                  <strong>Rating : </strong>  <span>{{ rates }}</span>
+              </div>
+              <div>
+                  <hr>
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      {{ rate_form }}
+                      <button type="submit">Send rating</button>
+                  </form>
+              </div>
+              <hr>
               <div class="form-group">
                   <label>Quantity</label>
-                  <input type="quantiy" placeholder="1" class="form-control quantity">
+                  <input type="quantity" placeholder="1" class="form-control quantity">
               </div>
               <p>
-                 <a class="btn btn-round btn-danger" type="button" href="{% url 'order' good.id %}"> Заказать</a>              </p>
+                 <a class="btn btn-round btn-danger" type="button" href="{% url 'order' good.id %}"> Заказать</a>
+              </p>
+              <div>
+                  <hr>
+                  {% for comment in comment %}
+                  <h4>{{ comment.text }}</h4>
+                  <h6>{{ comment.date }}</h6>
+                  {% endfor %}
+              </div>
+              <div>
+                  <form action="" method="post">
+                      {% csrf_token %}
+                      {{ form }}
+                      <button class="btn btn-round btn-success" type="submit" class="button">Комментировать</button>
+                  </form>
+              </div>
           </div>
       </div>
   </section>
